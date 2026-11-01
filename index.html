@@ -344,6 +344,20 @@ a{color:inherit;text-decoration:none}
       <a href="https://www.facebook.com/SHATSKY.EYLON/" target="_blank" rel="noopener" aria-label="פייסבוק"><svg aria-hidden="true"><use href="#ic-fb"/></svg></a>
       <a href="https://www.shatskyeylon.com/" target="_blank" rel="noopener" aria-label="האתר שלנו"><svg aria-hidden="true"><use href="#ic-web"/></svg></a>
     </nav>
+    <script>
+    /* short screens (like the Instagram in-app browser): shrink the top video so the social icons fit on the first screen */
+    (function(){
+      var hero=document.querySelector('.hero'), soc=document.querySelector('.socials'), lastW=0;
+      function top(el){ var t=0; while(el){ t+=el.offsetTop; el=el.offsetParent; } return t; }
+      function fit(){
+        if (window.innerWidth===lastW) return; lastW=window.innerWidth;
+        hero.style.height='';
+        var over=top(soc)+soc.offsetHeight-(window.innerHeight-16);
+        if (over>0) hero.style.height=Math.max(150, hero.offsetHeight-over)+'px';
+      }
+      fit(); addEventListener('load',function(){ lastW=0; fit(); }); addEventListener('resize',fit);
+    })();
+    </script>
   </section>
 
   <!-- קבוצה 1: רוכשי דירת קבלן (הקמפיין) -->
