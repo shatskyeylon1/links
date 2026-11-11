@@ -43,7 +43,7 @@ jobs:
       - name: Swap in the live button
         if: steps.check.outputs.go == 'yes'
         run: |
-          git checkout origin/guide-launch -- index.html
+          git diff "$(git merge-base HEAD origin/guide-launch)" origin/guide-launch -- index.html | git apply --index
           git --no-pager diff --cached --stat
           git --no-pager diff --cached | head -40
 
